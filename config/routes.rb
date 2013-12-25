@@ -1,6 +1,8 @@
 Muses::Application.routes.draw do
+  devise_for :donors
+
   root to: 'application#home'
-  devise_for :users
+  devise_for :students
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
