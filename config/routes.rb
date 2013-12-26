@@ -2,7 +2,7 @@ Muses::Application.routes.draw do
   devise_for :donors, :controllers => {:sessions => 'sessions', :registrations => 'donor/registrations'}
 
   root to: 'application#home'
-  devise_for :students, :controllers => {:sessions => 'sessions'}
+  devise_for :students, :controllers => {:sessions => 'sessions', :registrations => 'student/registrations'}
 
   devise_scope :student do
     match '/sign_in' => 'sessions#new'
