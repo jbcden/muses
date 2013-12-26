@@ -1,0 +1,14 @@
+<h1><%= current_student.email %></h1>
+
+<div><a href='<%= new_campaign_path %>'>Create a new campaign here</a></div>
+
+<div>
+  <p>Campaigns</p>
+  <ul>
+    <% for c in current_student.campaigns %>
+      <!-- <li><%= c.profile_picture %></li> -->
+      <img src='<%= c.profile_picture %>' height='50' width='70'>
+    <% end%>
+  </ul>
+</div>
+
