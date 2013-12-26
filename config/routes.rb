@@ -1,8 +1,12 @@
 Muses::Application.routes.draw do
-  devise_for :donors
+  devise_for :donors, :controllers => {:sessions => 'sessions', :registrations => 'donor/registrations'}
 
   root to: 'application#home'
-  devise_for :students
+  devise_for :students, :controllers => {:sessions => 'sessions'}
+
+  devise_scope :student do
+    match '/sign_in' => 'sessions#new'
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

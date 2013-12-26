@@ -18,11 +18,9 @@
       <%= link_to 'Edit profile', edit_donor_registration_path %> |
       <%= link_to "Logout", destroy_donor_session_path, method: :delete %>
     <% else %>
-      <%= link_to "Student Sign up", new_student_registration_path %> 
-      <%= link_to "Student Login", new_student_session_path %> |
-
-      <%= link_to "Donor Sign up", new_donor_registration_path %>
-      <%= link_to "Donor Login", new_donor_session_path %>
+      <%= link_to "Student Sign up", new_student_registration_path %> |
+      <%= link_to "Donor Sign up", new_donor_registration_path %> |
+      <%= link_to "Login", sign_in_path %>
     <% end %>
   </div>
   <p class="notice"><%= notice %></p>
