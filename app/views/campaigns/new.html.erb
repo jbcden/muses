@@ -1,34 +1,34 @@
 <h1>Create a new campaign</h1>
 
 <%= form_for @campaign, url: campaigns_path, html: { multipart: true } do |f| %>
-  <%= f.label :profile_picture %>
+  <%= f.label :profile_picture %><%= mark_required(@campaign, :profile_picture) %>
   <%= f.file_field :profile_picture %><br />
   
-  <%= f.label :first_name %>
+  <%= f.label :first_name %><font color='red'><%= mark_required(@campaign, :firstname) %></font>
   <%= f.text_field :firstname %><br />
 
-  <%= f.label :last_name %>
+  <%= f.label :last_name %><font color='red'><%= mark_required(@campaign, :lastname) %></font>
   <%= f.text_field :lastname %><br />
 
   Optional: <%= f.label :preferred_name %>
   <%= f.text_field :preferred_name %><br />
 
-  <%= f.label :state %>
+  <%= f.label :state %><font color='red'><%= mark_required(@campaign, :state) %></font>
   <%= f.select :state, STATES %><br />
 
-  <%= f.label :city %>
+  <%= f.label :city %><font color='red'><%= mark_required(@campaign, :city) %></font>
   <%= f.text_field :city %><br />
 
-  <%= f.label :instrument %>
+  <%= f.label :instrument %><font color='red'><%= mark_required(@campaign, :instrument) %></font>
   <%= f.text_field :instrument %><br />
 
-  <%= f.label :target_amount %>
+  <%= f.label :target_amount %><font color='red'><%= mark_required(@campaign, :target_amount) %></font>
   <%= f.number_field :target_amount %><br />
 
-  <%= f.label :age %>
+  <%= f.label :age %><font color='red'><%= mark_required(@campaign, :age) %></font>
   <%= f.number_field :age %><br />
 
-  <%= f.label :bio %>
+  <%= f.label :bio %><font color='red'><%= mark_required(@campaign, :bio) %></font>
   <%= f.text_area :bio %><br />
 
   <%= f.submit "Start" %>

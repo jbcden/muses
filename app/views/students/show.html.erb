@@ -7,7 +7,7 @@
   <ul>
     <% for c in current_student.campaigns %>
       <!-- <li><%= c.profile_picture %></li> -->
-      <img src='<%= c.profile_picture %>' height='50' width='70'>
+      <a href='<%= campaign_path c%>'><img src='<%= c.profile_picture %>' height='50' width='70'></a>
     <% end%>
   </ul>
 </div>
