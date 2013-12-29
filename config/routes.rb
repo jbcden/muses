@@ -1,13 +1,16 @@
 Muses::Application.routes.draw do
-  devise_for :donors, :controllers => {:sessions => 'sessions', :registrations => 'donor/registrations'}
+  devise_for :donors, :controllers => {:sessions => 'sessions', :registrations => 'donor/registrations', :confirmations => 'confirmations'}
 
-  devise_for :students, :controllers => {:sessions => 'sessions', :registrations => 'student/registrations'}
+  devise_for :students, :controllers => {:sessions => 'sessions', :registrations => 'student/registrations', :confirmations => 'confirmations'}
 
   devise_scope :student do
     match '/sign_in' => 'sessions#new'
+    match '/sign_out' => 'sessions#destroy', :as => '/sign_out'
   end
 
   root to: 'application#home'
+  get '/contact-us' => 'application#contact_us', :as => :contact
+  post '/contact-us' => 'application#submit_comment'
 
   resources :campaigns
   resources :students

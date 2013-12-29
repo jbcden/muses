@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Muses</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<!-- Change this conditional to take advantage of polymorphism or exhibits? -->
-  <div id="user_nav">
-    <% if student_signed_in? %>
-      Logged in as <strong><%= current_student.email %></strong>.
-      <%= link_to 'Edit profile', edit_student_registration_path %> |
-      <%= link_to "Logout", destroy_student_session_path, method: :delete %>
-    <% elsif donor_signed_in? %>
-      Logged in as <strong><%= current_donor.email %></strong>.
-      <%= link_to 'Edit profile', edit_donor_registration_path %> |
-      <%= link_to "Logout", destroy_donor_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Student Sign up", new_student_registration_path %> |
-      <%= link_to "Donor Sign up", new_donor_registration_path %> |
-      <%= link_to "Login", sign_in_path %>
-    <% end %>
-  </div>
+  <head>
+    <title>Messengers and Muses</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">		
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href='<%= root_path %>'>Messengers and Muses</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class='active'><%= link_to 'Landing', root_path %></li>
+          <li><%= link_to 'Projects',campaigns_path %></li>
+          <li><% if student_signed_in? %>
+            <%= link_to 'Profile', student_path(current_student) %>
+          <% else %>
+            <%= link_to 'Students', new_student_registration_path %></li>
+          <% end %>
+          <li><%= link_to 'Donors', new_donor_registration_path %></li>
+          <li><%= link_to 'Contact Us', contact_path %></li>
+          <% unless student_signed_in? or donor_signed_in? %>
+            <li><%= link_to 'Login', sign_in_path %></li>
+          <% else %>
+            <li><%= link_to 'Logout', sign_out_path %></li>
+          <% end %>
+          </li>
+          <!-- Change this conditional to take advantage of polymorphism or exhibits? -->
+        </ul>
+        </nav>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 <%= yield %>
-
 </body>
 </html>
