@@ -1,10 +1,9 @@
-
 development:
   adapter: mysql2
   encoding: utf8
   database: muses_development
-  user: jchae
-  password: sibeliusviom16:regrets
+  user: root
+  password: syntaxabusequiteaccessible
   pool: 5
   socket: /var/run/mysqld/mysqld.sock
 
@@ -15,8 +14,8 @@ test:
   adapter: mysql2
   encoding: utf8
   database: muses_test
-  user: jchae
-  password: sibeliusviom16:regrets
+  user: root
+  password: syntaxabusequiteaccessible
   pool: 5
   socket: /var/run/mysqld/mysqld.sock
 
@@ -24,7 +23,7 @@ production:
   adapter: mysql2
   encoding: utf8
   database: muses_production
-  user: jchae
-  password: sibeliusviom16:regrets
+  user: root
+  password: syntaxabusequiteaccessible
   pool: 5
   socket: /var/run/mysqld/mysqld.sock
