@@ -14,6 +14,7 @@ Muses::Application.routes.draw do
 
   resources :campaigns
   resources :students
+  resources :donors
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

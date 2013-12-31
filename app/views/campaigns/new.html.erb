@@ -1,35 +1,99 @@
-<h1>Create a new campaign</h1>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-8'>
+      <h1 class='page-header'>Create a new campaign</h1>
 
-<%= form_for @campaign, url: campaigns_path, html: { multipart: true } do |f| %>
-  <%= f.label :profile_picture %><%= mark_required(@campaign, :profile_picture) %>
-  <%= f.file_field :profile_picture %><br />
-  
-  <%= f.label :first_name %><font color='red'><%= mark_required(@campaign, :firstname) %></font>
-  <%= f.text_field :firstname %><br />
+      <%= form_for @campaign, url: campaigns_path, html: { multipart: true, :class => 'form-horizontal', :role => 'form' } do |f| %>
 
-  <%= f.label :last_name %><font color='red'><%= mark_required(@campaign, :lastname) %></font>
-  <%= f.text_field :lastname %><br />
+        <div class='form-group'>
+          <%= f.label :profile_picture, 'Profile Picture', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.file_field :profile_picture, :autofocus => true, :required => '' %>
+          </div>
+        </div>
 
-  Optional: <%= f.label :preferred_name %>
-  <%= f.text_field :preferred_name %><br />
+        <div class='form-group'>
+          <%= f.label :firstname, 'First Name', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_field :firstname, :class => 'form-control', :required => '' %>
+          </div>
+        </div>
 
-  <%= f.label :state %><font color='red'><%= mark_required(@campaign, :state) %></font>
-  <%= f.select :state, STATES %><br />
+        <div class='form-group'>
+          <%= f.label :lastname, 'Last Name', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_field :lastname, :class => 'form-control', :required => '' %>
+          </div>
+        </div>
 
-  <%= f.label :city %><font color='red'><%= mark_required(@campaign, :city) %></font>
-  <%= f.text_field :city %><br />
+        <div class='form-group'>
+          <em>(Optional) </em><%= f.label :preferred_name, 'Preferred Name', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_field :preferred_name, :class => 'form-control' %>
+          </div>
+        </div>
 
-  <%= f.label :instrument %><font color='red'><%= mark_required(@campaign, :instrument) %></font>
-  <%= f.text_field :instrument %><br />
+        <div class='form-group'>
+          <%= f.label :state, 'State', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.select :state, STATES, :class => 'form-control', :required => '' %>
+          </div>
+        </div>
 
-  <%= f.label :target_amount %><font color='red'><%= mark_required(@campaign, :target_amount) %></font>
-  <%= f.number_field :target_amount %><br />
+        <div class='form-group'>
+          <%= f.label :city, 'City', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_field :city, :class => 'form-control', :required => '' %>
+          </div>
+        </div>
 
-  <%= f.label :age %><font color='red'><%= mark_required(@campaign, :age) %></font>
-  <%= f.number_field :age %><br />
+        <div class='form-group'>
+          <%= f.label :instrument, 'Instrument', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_field :instrument, :class => 'form-control', :required => '' %>
+          </div>
+        </div>
 
-  <%= f.label :bio %><font color='red'><%= mark_required(@campaign, :bio) %></font>
-  <%= f.text_area :bio %><br />
+        <div class='form-group'>
+          <%= f.label :target_amount, 'Target Amount', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.number_field :target_amount, :class => 'form-control', :required => '' %>
+          </div>
+        </div>
 
-  <%= f.submit "Start" %>
-<% end %>
+        <div class='form-group'>
+          <%= f.label :age, 'Age', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.number_field :age, :class => 'form-control', :required => '' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :title, 'Title', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_field :title, :class => 'form-control', :required => '' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :description, 'Description', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_area :description, :class => 'form-control', :required => '', :rows => '5' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :bio, 'Bio', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_area :bio, :class => 'form-control', :required => '', :rows => '5' %>
+          </div>
+        </div>
+
+        <%# <%= f.label :bio %><font color='red'><%= mark_required(@campaign, :bio) %></font>
+        <%# <%= f.text_area :bio %><br />
+
+        <%= f.submit "Start", :class => 'btn btn-default btn-success' %>
+      <% end %>
+    </div>
+  </div>
+</div>

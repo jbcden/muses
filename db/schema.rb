@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131226220458) do
+ActiveRecord::Schema.define(:version => 20131229211426) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "profile_picture_file_name"
@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(:version => 20131226220458) do
     t.integer  "age"
     t.string   "bio"
     t.integer  "student_id"
+    t.string   "description"
+    t.string   "title"
+    t.integer  "progress"
   end
 
   create_table "donors", :force => true do |t|

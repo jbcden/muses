@@ -24,14 +24,18 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class='active'><%= link_to 'Landing', root_path %></li>
+          <li><%= link_to 'Landing', root_path %></li>
           <li><%= link_to 'Projects',campaigns_path %></li>
           <li><% if student_signed_in? %>
             <%= link_to 'Profile', student_path(current_student) %>
           <% else %>
             <%= link_to 'Students', new_student_registration_path %></li>
           <% end %>
-          <li><%= link_to 'Donors', new_donor_registration_path %></li>
+          <li><% if donor_signed_in? %>
+            <%= link_to 'Profile', donor_path(current_donor) %> 
+          <% else %>
+            <%= link_to 'Donors', new_donor_registration_path %>
+          <% end %></li>
           <li><%= link_to 'Contact Us', contact_path %></li>
           <% unless student_signed_in? or donor_signed_in? %>
             <li><%= link_to 'Login', sign_in_path %></li>
@@ -41,9 +45,12 @@
           </li>
           <!-- Change this conditional to take advantage of polymorphism or exhibits? -->
         </ul>
-        </nav>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-<%= yield %>
-</body>
+      </div>
+    </div>
+    </nav>
+    <% flash.each do |key, value| %>
+      <div class='flash <%= key %>'><%= value %></div>
+    <% end %>
+    <%= yield %>
+  </body>
 </html>

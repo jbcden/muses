@@ -3,7 +3,6 @@ class CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find(params[:id])
-    raise Exceptions::NotAuthorizedError unless CampaignPolicy.new(current_student, @campaign).authorized?
   end
 
   def new
