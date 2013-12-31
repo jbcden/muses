@@ -1,0 +1,65 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-5">
+      <!-- <img class="profile img-responsive img-rounded" src="images/profile/sample.jpg" alt="Profile Picture"> -->
+      <%= image_tag @campaign.profile_picture.url, :class => 'profile img-responsive img-rounded', :alt => 'Profile Picture' %>
+    </div>
+
+    <% if student_signed_in? and current_student.id == @campaign.student_id %>
+      <a href='<%= edit_campaign_path @campaign%>'>Edit Your Campaign</a>
+      <br />
+      <%= button_to 'End this campaign', campaign_path(@campaign), :confirm => 'are you sure?',
+        :method => :delete, :class => 'btn btn-default btn-danger' %>
+      <% end %>
+      <div class="col-md-7">
+        <h1><%= "#{@campaign.firstname} #{@campaign.lastname}"%></h1>
+        <h3><%= @campaign.title %></h3>
+        <h5>Prefers to be called <%= @campaign.preferred_name%></h5>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Basic Info</h3>
+          </div>
+          <div class="panel-body">
+            <p><strong>Location:</strong> <%= "#{@campaign.city}, #{@campaign.state}"%></p>
+            <p><strong>Instrument:</strong> <%= @campaign.instrument%></p>
+            <p><strong>Age/Grade:</strong> <%= @campaign.age%></p>
+            <p><strong>Description:</strong> <%= @campaign.description %>
+          </div>
+        </div>
+
+        <!--   <div class="project-progress"> -->
+          <!--     <div class="progress" style="height: 70px;"> -->
+            <!--       <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"> -->
+              <!--         <h1>$140 <small>raised</small></h1> -->
+              <!--       </div> -->
+            <!--     </div> -->
+          <!--   </div> -->
+
+        <!--   <div class="row project-target row-fluid show-grid"> -->
+          <!--     <div class="col-md-6"> -->
+            <!--       <h3>70% <small>complete</small></h3> -->
+            <!--     </div> -->
+          <!--     <div class="col-md-6"> -->
+            <!--       <h3>$200 <small>target</small></h3> -->
+            <!--     </div> -->
+          <!--   </div> -->
+
+        <!-- </div> -->
+
+    </div>
+
+    <div class="row buffer">
+      <div class="col-md-12">
+        <p><strong>Bio:</strong></p>
+        <p>Panda Appleston is a panda. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis blandit erat ac lacus adipiscing, luctus sodales ipsum commodo. Mauris viverra iaculis eleifend. Sed accumsan id risus non convallis. Nulla a dictum odio. Maecenas volutpat arcu nibh, quis posuere felis interdum vitae. Sed vulputate neque in luctus consequat. Mauris nec lacus at magna ultricies scelerisque. Fusce vehicula enim pharetra arcu tincidunt, eget vulputate nibh accumsan. Aliquam vestibulum metus lacus, vitae iaculis libero condimentum vel.</p>
+
+        <p>Etiam lacus orci, cursus nec tempus ut, interdum ac quam. Sed sit amet nisl non lacus hendrerit porttitor sed eu enim. Aenean egestas fermentum lectus, quis euismod lorem posuere sed. Cras in dolor vitae nisl tempor suscipit eu luctus lectus. Nulla ac mauris id neque pellentesque tristique. Nunc dictum, elit eu viverra vestibulum, sapien lectus bibendum neque, in ornare dui massa a diam. Pellentesque aliquam dapibus cursus. Maecenas imperdiet pretium cursus.</p>
+
+
+      </div>
+    </div>
+
+  </div>

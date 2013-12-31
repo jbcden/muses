@@ -1,0 +1,97 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-8'>
+      <h1 class='page-header'>Edit your campaign</h1>
+
+
+      <%= form_for @campaign, :html => {:class => 'form-horizontal', :role => 'form'} do |f| %>
+
+        <div class='form-group'>
+          <%= f.label :profile_picture, 'Profile Picture', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.file_field :profile_picture, :autofocus => true %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :firstname, 'First Name', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_field :firstname, :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :lastname, 'Last Name', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_field :lastname, :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :preferred_name, 'Preferred Name', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_field :preferred_name, :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :state, 'State', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.select :state, STATES, :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :city, 'City', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_field :city, :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :instrument, 'Instrument', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_field :instrument, :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :target_amount, 'Target Amount', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.number_field :target_amount, :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :age, 'Age', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.number_field :age, :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :title, 'Title', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_field :title, :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :description, 'Description', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_area :description, :class => 'form-control', :rows => '5' %>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :bio, 'Bio', :class => 'col-sm-2 control-label'%>
+          <div class='col-sm-10'>
+            <%= f.text_area :bio, :class => 'form-control', :rows => '5' %>
+          </div>
+        </div>
+
+        <%= f.submit 'Update', :class => 'btn btn-default btn-success' %>
+      <% end %>
+    </div>
+  </div>
+</div>
