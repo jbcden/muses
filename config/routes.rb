@@ -1,4 +1,8 @@
+# require 'sidekiq/web'
 Muses::Application.routes.draw do
+
+  # mount Sidekiq::Web => '/sidekiq'
+
   devise_for :donors, :controllers => {:sessions => 'sessions', :registrations => 'donor/registrations', :confirmations => 'confirmations'}
 
   devise_for :students, :controllers => {:sessions => 'sessions', :registrations => 'student/registrations', :confirmations => 'confirmations'}

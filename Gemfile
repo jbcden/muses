@@ -8,6 +8,7 @@ gem 'rails', '3.2.16'
 gem 'devise'
 gem 'paperclip', '~> 3.0'
 gem 'sidekiq'
+# gem 'sinatra', '>= 1.3.0', :require => nil
 
 group :production do
   gem 'mysql2'
