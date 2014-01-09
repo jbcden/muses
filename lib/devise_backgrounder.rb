@@ -2,7 +2,7 @@
 class DeviseBackgrounder
 
   def self.confirmation_instructions(record, token, opts = {})
-    new(:confirmation_instructions, record, opts)
+    new(:confirmation_instructions, record, token, opts)
   end
 
   def self.reset_password_instructions(record, token, opts = {})
