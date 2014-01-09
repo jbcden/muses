@@ -6,15 +6,20 @@ Muses::Application.routes.draw do
   devise_scope :student do
     match '/sign_in' => 'sessions#new'
     match '/sign_out' => 'sessions#destroy', :as => '/sign_out'
+    match '/muses/sign_up' => 'student::registrations#new'
+  end
+
+  devise_scope :donor do
+    match '/messengers/sign_up' => 'donor::registrations#new'
   end
 
   root to: 'application#home'
   get '/contact-us' => 'application#contact_us', :as => :contact
   post '/contact-us' => 'application#submit_comment'
 
-  resources :campaigns
+  resources :campaigns, :path => '/muses/'
   resources :students
-  resources :donors
+  resources :donors, :path => '/messengers/'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
