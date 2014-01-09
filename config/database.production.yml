@@ -25,5 +25,5 @@ production:
   database: muses_production
   user: root
   password: 191070forgotten:peace
-  pool: 5
+  pool: 25
   socket: /var/run/mysqld/mysqld.sock
