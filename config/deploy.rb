@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+require 'sidekiq/capistrano'
 
 server 'mmuses.org', :web, :app, :db, primary: true
 
