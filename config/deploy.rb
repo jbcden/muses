@@ -36,7 +36,7 @@ namespace :deploy do
 
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs #{current_path}/public/htaccess #{current_path}/public/.htaccess"
+    run "ln -nfs #{current_path}/public/htaccess #{release_path}/public/.htaccess"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
