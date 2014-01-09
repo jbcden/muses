@@ -1,5 +1,6 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+require_relative '../../lib/devise_backgrounder'
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -13,7 +14,7 @@ Devise.setup do |config|
   config.mailer_sender = 'no-reply@mmuses.org'
 
   # Configure the class responsible to send e-mails.
-  config.mailer = 'Devise::Mailer'
+  config.mailer = 'DeviseBackgrounder'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
