@@ -28,7 +28,6 @@ namespace :deploy do
 
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/apache.conf /etc/apache2/sites-available/#{application}"
-    run "ln -nfs #{current_path}/public/htaccess /#{current_path}/public/.htaccess"
     run "mkdir -p #{shared_path}/config"
     put File.read("config/database.production.yml"), "#{shared_path}/config/database.yml"
     puts "Now edit the config files in #{shared_path}"
@@ -37,6 +36,7 @@ namespace :deploy do
 
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{current_path}/public/htaccess /#{current_path}/public/.htaccess"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
