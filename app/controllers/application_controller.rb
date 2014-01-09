@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
   def submit_comment
     @comment = Comment.new(params)
-    ApplicationMailer.comment_submission(@comment).deliver
+    ApplicationMailer.delay.comment_submission(@comment)
     render 'contact_us'
   end
 end

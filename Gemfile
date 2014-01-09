@@ -7,6 +7,8 @@ gem 'rails', '3.2.16'
 
 gem 'devise'
 gem 'paperclip', '~> 3.0'
+gem 'sidekiq'
+gem 'devise-async'
 
 group :production do
   gem 'mysql2'
