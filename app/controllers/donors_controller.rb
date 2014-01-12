@@ -5,6 +5,6 @@ class DonorsController < ApplicationController
   end
 
   def index
-    @donors = Donor.all
+    @messengers = Donor.all
   end
 end

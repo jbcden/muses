@@ -8,7 +8,9 @@ class Campaign < ActiveRecord::Base
   validates :city, presence: true
   validates :instrument, presence: true
   validates :target_amount, presence: true
+  validates :target_amount, :numericality => {:greater_than => 0}
   validates :age, presence: true
+  validates :age, :numericality => {:greater_than => 0}
   validates :bio, presence: true
   validates_uniqueness_of :firstname, :scope => :lastname
   validates :title, :presence => true

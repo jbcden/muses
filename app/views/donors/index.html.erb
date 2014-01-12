@@ -1,0 +1,14 @@
+<div class='container'>
+  <div class='page-header'>
+    <h1>Messengers</h1>
+  </div>
+  <div class='row'>
+    <% @messengers.each do |m| %>
+      <div class='col-xs-6 col-sm-3 col-md-2'>
+      <a class='img-profile-link' href='#'><%= image_tag m.profile_picture.url :thumb, :class => 'img-responsive img-rounded', :alt => 'Profile Picture' %>
+      <p>Title: <%= c.title %></p>
+      </a>
+    </div>
+  <% end %>
+  </div>
+</div>
