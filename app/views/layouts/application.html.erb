@@ -34,8 +34,9 @@
           <li><% if donor_signed_in? %>
             <%= link_to 'Profile', donor_path(current_donor) %> 
           <% else %>
-            <%= link_to 'Messengers', messengers_sign_up_path %>
+            <%= link_to 'Become a Messenger', messengers_sign_up_path %>
           <% end %></li>
+          <li><%= link_to 'Messengers', donors_path %></li>
           <li><%= link_to 'Contact Us', contact_path %></li>
           <% unless student_signed_in? or donor_signed_in? %>
             <li><%= link_to 'Login', sign_in_path %></li>
