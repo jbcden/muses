@@ -34,7 +34,11 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'factory_girl_rails'
   gem 'rr'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 gem 'jquery-rails'
