@@ -11,11 +11,15 @@ Muses::Application.routes.draw do
     match '/sign_in' => 'sessions#new'
     match '/sign_out' => 'sessions#destroy', :as => '/sign_out'
     match '/muses/sign_up' => 'student::registrations#new'
+    match '/muses/confirmation/new' => 'confirmations#new'
+    match '/muses/password/new' => 'devise::passwords#new'
   end
 
   devise_scope :donor do
-    match '/sign_in' => 'sessions#new'
     match '/messengers/sign_up' => 'donor::registrations#new'
+    match '/messengers/sign_up' => 'student::registrations#new'
+    match '/messengers/confirmation/new' => 'confirmations#new'
+    match '/messengers/password/new' => 'devise::passwords#new'
   end
 
   root to: 'application#home'
