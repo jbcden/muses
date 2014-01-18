@@ -14,6 +14,7 @@ Muses::Application.routes.draw do
   end
 
   devise_scope :donor do
+    match '/sign_in' => 'sessions#new'
     match '/messengers/sign_up' => 'donor::registrations#new'
   end
 

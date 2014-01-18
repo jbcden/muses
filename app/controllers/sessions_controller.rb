@@ -8,16 +8,13 @@ class SessionsController < Devise::SessionsController
 
   # POST /resource/login
   def create
-    unless Student.find_by_email(params[:student][:email])
-      auth_options = {scope: :donor, recall: 'sessions#new' }
-      resource_name = :donor
-      warden.config[:default_scope] = :donor
-      params[:donor] = params.delete(:student)
-      resource_name = :donor
-    else
-      resource_name = :student
-      auth_options = {scope: :student, recall: 'sessions#new'}
-    end
+    ps = PolymorphicSessions.new(params).info
+    auth_options = ps[:auth_options]
+    resource_name = ps[:resource_name]
+    warden.config[:default_scope] = ps[:warden]
+    params = ps[:paramaters]
+    # logger.debug "PS info: #{ps}"
+    
     self.resource = warden.authenticate!(auth_options)
     set_flash_message(:notice, :signed_in) if is_flashing_format?
     sign_in(resource_name, resource)
@@ -34,4 +31,12 @@ class SessionsController < Devise::SessionsController
     set_flash_message :notice, :signed_out if signed_out && is_flashing_format?
     redirect_to root_url
   end
+
+  # private
+  #   def session_setup(ps)
+  #   auth_options = ps[:auth_options]
+  #   resource_name = ps[:resource_name]
+  #   warden.config[:default_scope] = ps[:warden]
+  #   params = ps[:paramaters]
+  #   end
 end

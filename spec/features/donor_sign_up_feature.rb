@@ -6,7 +6,7 @@ describe Donor do
     @donor = FactoryGirl.build(:donor)
   end
   it "should not be allowed to register with invalid credentials" do
-    attach_file "Profile Picture", '../photos/rails.png'
+    attach_file "Profile Picture", Rails.root.join("spec/photos/rails.png")
     fill_in "First Name", :with => @donor.firstname
     fill_in "Last Name", :with => @donor.lastname
     fill_in "Email", :with => @donor.email
@@ -17,7 +17,7 @@ describe Donor do
   end
 
   it "should be registered and an email sent if valid credentials are provided" do
-    attach_file "Profile Picture", '../photos/rails.png'
+    attach_file "Profile Picture", Rails.root.join("spec/photos/rails.png")
     fill_in "First Name", :with => @donor.firstname
     fill_in "Last Name", :with => @donor.lastname
     fill_in "Email", :with => @donor.email
