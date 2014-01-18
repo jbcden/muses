@@ -1,8 +1,7 @@
 <div class='container'> 
   <h1 class='page-header'>Sign in</h1>
-  <h2><%= p params %></h2>
-  <h2><%= p @ps %></h2>
 
+  <h2><%= p resource %></h2>
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal', :role => 'form'}) do |f| %>
 
     <div class='form-group'>
