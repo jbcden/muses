@@ -1,9 +1,19 @@
 require_relative '../spec_helper'
 
-describe "student login" do
-  let(:auth_student) { create_logged_in_student }
+describe PolymorphicSessions do
+  describe "student login" do
+    before {@student = FactoryGirl.create(:student)}
+    it "should return a student resource" do
+      @ps = PolymorphicSessions.new({student: { email: "foobar@example.com"}}).info
+      @ps[:resource_name].should be(:student)
+    end
+  end
 
-  it "should allow access" do
-    visit edit_student_registration_path(auth_student)
+  describe "donor login" do
+    before {@donor = FactoryGirl.create(:donor)}
+    it "should return a donor resource" do
+      @ps = PolymorphicSessions.new({student: { email: "foo@example.com"}}).info
+      @ps[:resource_name].should be(:donor)
+    end
   end
 end
