@@ -19,7 +19,7 @@ class CampaignPolicy
 
   def authorized?
     if user.nil?
-      raise Exceptions::NotAuthorizedError
+      raise ActionController::RoutingError.new('Forbidden')
     else
       user.id == campaign.student_id
     end

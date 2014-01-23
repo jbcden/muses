@@ -8,6 +8,6 @@ class StudentPolicy
   end
 
   def authorized?
-    current == user
+    raise ActionController::RoutingError.new('Forbidden') unless current == user
   end
 end
