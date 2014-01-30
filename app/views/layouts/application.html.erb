@@ -25,7 +25,8 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <!-- <li><%= link_to 'Landing', root_path %></li> -->
-          <li><%= link_to 'Muses',campaigns_path %></li>
+          <li><%= link_to 'Moons',campaigns_path %></li>
+
           <li><% if student_signed_in? %>
             <%= link_to 'Profile', student_path(current_student) %>
           <% else %>
