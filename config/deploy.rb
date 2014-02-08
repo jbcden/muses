@@ -1,7 +1,7 @@
 require 'bundler/capistrano'
 require 'sidekiq/capistrano'
 
-server 'mmuses.org', :web, :app, :db, primary: true
+server 'projectmuses.com', :web, :app, :db, primary: true
 
 set :application, "muses"
 set :user, "dev"

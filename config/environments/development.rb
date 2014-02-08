@@ -39,7 +39,7 @@ Muses::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   # config.action_mailer.smtp_settings = {
-  #   domain: 'mmuses.org'
+  #   domain: 'projectmuses.com'
   # }
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
