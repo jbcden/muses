@@ -56,8 +56,12 @@ div.project-progress{
 	color: white;
 }
 
-a.navbar-logo{
-	margin: 10px;
+.navbar .logo {
+	margin-top: 5px;
+	max-height: 40px;
+	overflow: visible;
+	padding-top: 0;
+	padding-bottom: 0;
 }
 
 /* START Responsive Video Player Styling - from http://bootply.com/BassJobsen/61833 */
