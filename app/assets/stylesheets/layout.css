@@ -56,6 +56,10 @@ div.project-progress{
 	color: white;
 }
 
+a.navbar-logo{
+	margin: 10px;
+}
+
 /* START Responsive Video Player Styling - from http://bootply.com/BassJobsen/61833 */
 .flex-video {
 	position: relative;
