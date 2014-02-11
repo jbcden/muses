@@ -43,6 +43,7 @@ group :development, :test do
 end
 
 gem 'jquery-rails'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # Deploy with Capistrano
 gem 'capistrano', '< 3.0'
