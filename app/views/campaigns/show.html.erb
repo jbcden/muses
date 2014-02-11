@@ -37,7 +37,7 @@
     </div>
     <div class="row">
       <div class="col-md-5">
-        <%= button_to 'Support this muse', messengers_donate_path(@donor) %>
+        <%= button_to 'Support this muse', donate_path(:campaign_id => @campaign.id) %>
       </div>
       <div class="col-md-7">
         <div class="project-progress">
