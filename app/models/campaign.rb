@@ -17,4 +17,5 @@ class Campaign < ActiveRecord::Base
   validates :description, :presence => true
 
   belongs_to :student, :foreign_key => :student_id
+  has_many :donations
 end
