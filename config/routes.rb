@@ -30,6 +30,8 @@ Muses::Application.routes.draw do
   resources :students
   resources :donors, :path => '/messengers/'
 
+  match '/demo-form' => 'application#demo', as: :demo
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

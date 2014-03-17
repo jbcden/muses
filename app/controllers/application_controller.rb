@@ -11,4 +11,6 @@ class ApplicationController < ActionController::Base
     ApplicationMailer.delay.comment_submission(@comment)
     render 'contact_us'
   end
+  def demo
+  end
 end
