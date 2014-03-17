@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Messengers and Muses</title>
+    <title>Project Muses</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "https://js.stripe.com/v1/" %>
     <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" %>
@@ -38,16 +38,16 @@
           <li <% if request.path==messengers_sign_up_path %>class="active"<% end %>><% if donor_signed_in? %>
             <%= link_to 'Profile', donor_path(current_donor) %> 
           <% else %>
-            <%= link_to 'Become a Messenger', messengers_sign_up_path %>
+            <%= link_to 'Become a Donor', messengers_sign_up_path %>
           <% end %></li>
-          <li <% if request.path==donors_path %>class="active"<% end %>><%= link_to 'Messengers', donors_path %></li>
+          <li <% if request.path==donors_path %>class="active"<% end %>><%= link_to 'Donors', donors_path %></li>
           <li <% if request.path==contact_path %>class="active"<% end %>><%= link_to 'Contact Us', contact_path %></li>
           <% unless student_signed_in? or donor_signed_in? %>
             <li <% if request.path==sign_in_path %>class="active"<% end %>><%= link_to 'Login', sign_in_path %></li>
           <% else %>
             <li <% if request.path==sign_out_path %>class="active"<% end %>><%= link_to 'Logout', sign_out_path %></li>
           <% end %>
-          </li>
+          <li <% if request.path==demo_path %>class="active"<% end %>><%= link_to 'Sample Muse Sign-Up', demo_path %></li>
           <!-- Change this conditional to take advantage of polymorphism or exhibits? -->
         </ul>
       </div>
