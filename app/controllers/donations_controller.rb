@@ -15,8 +15,8 @@ class DonationsController < ApplicationController
         :card => token,
         :account_balance => amount
       )
-      # save_stripe_customer_id(@campaign_id, current_donor.id, customer_id)
-      save_stripe_customer_id(campaign_id, 2, customer.id)
+      save_stripe_customer_id(campaign_id, current_donor.id, customer.id, amount)
+      # save_stripe_customer_id(campaign_id, 2, customer.id)
     end
   end
 
@@ -34,9 +34,11 @@ class DonationsController < ApplicationController
     raise ActionController::RoutingError.new('Forbidden')
   end
 
-  def save_stripe_customer_id(campaign, donor, customer_id)
+  def save_stripe_customer_id(campaign, donor, customer_id, amount)
     d = Donation.create(customer_id: customer_id, campaign_id: campaign, donor_id: donor)
     if d.save!
+      amount = amount / 100
+      Campaign.find(campaign).add_to_progress(amount)
       flash[:success] = "Thank you for contributing!"
       redirect_to campaign_path(campaign)
       # render 'donate'
