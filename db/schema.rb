@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140211061156) do
+ActiveRecord::Schema.define(:version => 20140211191336) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "profile_picture_file_name"
@@ -36,9 +36,10 @@ ActiveRecord::Schema.define(:version => 20140211061156) do
   create_table "donations", :force => true do |t|
     t.integer  "campaign_id"
     t.integer  "donor_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "customer_id"
+    t.boolean  "is_paid",     :default => false
   end
 
   create_table "donors", :force => true do |t|

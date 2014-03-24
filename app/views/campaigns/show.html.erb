@@ -36,9 +36,16 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-5">
-        <%= button_to 'Support this muse', donate_path(:campaign_id => @campaign.id) %>
-      </div>
+      <% unless student_signed_in? %>
+        <div class="col-md-5">
+          <% if donor_signed_in? %>
+            <%= button_to 'Support this muse', donate_path(:campaign_id => @campaign.id) %>
+          <% else %>
+            <%= button_to 'Support this muse', messengers_sign_up_path %>
+            <small>You must sign up as a donor in order to make a donation.</small>
+          <% end %>
+        <% end %>
+        </div>
       <div class="col-md-7">
         <div class="project-progress">
           <div class="progress" style="height: 70px;">
