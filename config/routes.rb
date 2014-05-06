@@ -29,10 +29,11 @@ Muses::Application.routes.draw do
   resources :campaigns, :path => '/muses/'
   resources :students
   resources :donors, :path => '/messengers/'
+  resources :student_applications
 
   match '/donate' => 'donations#donate'
   match '/payment' => 'donations#payment'
-  match '/demo-form' => 'application#demo', as: :demo
+  # match '/demo-form' => 'application#demo', as: :demo
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

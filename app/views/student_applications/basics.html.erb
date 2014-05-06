@@ -1,0 +1,60 @@
+<div class="container">
+  ------------------<br>
+  PAGE 2<br>
+  ------------------
+  <%= p params %>
+  <h2>I. BASICS</h2>
+
+  <h3>THE STUDENT:</h3>
+
+  <%= render 'shared/errors' %>
+  <%= form_for @application, url: wizard_path, html: {:class => 'form-horizontal', role: 'form' }, :method => :put do |f| %>
+    <p>
+    <label>Last Name: <%= f.text_field :s_last %></label> <br>
+    <label>Middle Name: <%= f.text_field :s_middle %></label> <br>
+    <label>First Name: <%= f.text_field :s_first %></label> <br>
+    <label>Preferred Name/Nickname: <%= f.text_field :s_nickname %></label> <br>
+    <label>Gender:  <%= f.text_field :s_gender %></label> <br>
+    <label>Grade in school:  <%= f.text_field :s_grade %></label> <br>
+    <label>Full name of school: <%= f.text_field :s_school %></label> <br>
+    <label>City of school: <%= f.text_field :school_city %></label> <br>
+    <label>Age:  <%= f.text_field :s_age %></label> <br>
+    <label>Date of Birth: <%= f.date_select :dob, start_year: 1990, end_year: Date.today.year, include_blank: true %></label> <br>
+    </p>
+
+    <h3>PARENT/LEGAL GUARDIAN (#1):</h3>
+
+    <p>
+    <label>Last Name: <%= f.text_field :g1_last %></label> <br>
+    <label>Middle Name: <%= f.text_field :g1_middle %></label> <br>
+    <label>First Name: <%= f.text_field :g1_first %></label> <br>
+    <label>Relation to the STUDENT: <%= f.text_field :g1_relation %></label> <br>
+    <label>Occupation: <%= f.text_field :g1_occupation %></label> <br>
+    <label>Highest Educational Degree Earned: <%= f.select :g1_edu, options_for_select(["College", "High School", "Graduate"]), include_blank: true %></label> <br>
+    </p>
+
+    <h3>PARENT/LEGAL GUARDIAN (#2, IF APPLICABLE):</h3>
+
+    <p>
+    <label>Last Name: <%= f.text_field :g2_last %></label> <br>
+    <label>Middle Name: <%= f.text_field :g2_middle %></label> <br>
+    <label>First Name: <%= f.text_field :g2_first %></label> <br>
+    <label>Relation to the STUDENT: <%= f.text_field :g2_relation %></label> <br>
+    <label>Occupation: <%= f.text_field :g2_occupation %></label> <br>
+    <label>Highest Educational Degree Earned: <%= f.select :g2_edu, options_for_select(["College", "High School", "Graduate"]) %></label> <br>
+    </p>
+
+    <h3>PRIMARY CONTACT</h3>
+
+    <p>
+    <label>Primary Address: <%= f.text_field :primary_addr %></label> <br>
+    <label>City: <%= f.text_field :city %></label> <br>
+    <label>State: <%= f.select :state, STATES %></label> <br>
+    <label>Zip: <%= f.text_field :zip %></label> <br>
+    <label>Phone 1: <%= f.text_field :phone1 %></label> <br>
+    <label>Phone 2: <%= f.text_field :phone2 %></label> <br>
+    <label>Email Address: <%= f.text_field :email %></label> <br>
+    </p>
+    <%= f.submit "Continue", :class => 'btn btn-default btn-success' %>
+  <% end %>
+</div>

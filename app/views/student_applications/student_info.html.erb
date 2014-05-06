@@ -1,0 +1,57 @@
+<div class="container">
+  <%= p params %>
+  ------------------<br>
+  PAGE 4<br>
+  ------------------
+
+
+  <h2>III. ABOUT YOU (THE STUDENT)</h2>
+  <%= render 'shared/errors' %>
+  <%= form_for @application, url: wizard_path, html: {:class => 'form-horizontal', role: 'form' }, :method => :put do |f| %>
+    <p>Please tell us about yourself (if PARENT/LEGAL GUARDIAN, please tell us about the STUDENT):</p>
+
+    <p><%= f.text_area :s_about %></p>
+
+
+
+    Please tell us about where you live (your home, school, or town/city):
+
+    <p><%= f.text_area :s_living %></p>
+
+
+
+    Briefly describe your project (e.g. taking lessons, participating in an after school program, attending a summer camp). Include the 1) names of any organizations associated with the project, 2) how long your project would last, and 3) how much funding you seek:
+
+    <p><%= f.text_area :s_proj_description %></p>
+
+    Tell us why this is important to you:
+
+    <p><%= f.text_area :s_important %></p>
+
+
+    What is your favorite part about music?
+
+    <p><%= f.text_area :s_favorite_part %></p>
+
+
+
+
+    Finally, what do you want to tell the people who want to support you?
+
+    <p><%= f.text_area :s_tell_donors %></p>
+
+
+
+
+    <p>Please submit one or both of the following:</p>
+
+    <p>A picture of the STUDENT</p>
+    <p><%= f.file_field :s_picture %></p>
+
+    <p>If you are the PARENT/LEGAL GUARDIAN, please attach a picture of yourself here.</p>
+    <p><%= f.file_field :g_picture %></p>
+
+    <p>*You may also <b>email</b> us the forms to <a href="mailto:messengersandmuses@gmail.com">messengersandmuses@gmail.com</a>. You may also <b>mail</b> these forms to the address mentioned above.</p>
+    <%= f.submit "Continue", :class => 'btn btn-default btn-success' %>
+  <% end %>
+</div>

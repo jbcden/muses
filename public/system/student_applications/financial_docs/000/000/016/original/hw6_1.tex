@@ -1,0 +1,131 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage}
+\usepackage{fancyhdr}
+\usepackage{epsfig}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumerate}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem*{lem}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{notation}{Notation}
+\newtheorem*{claim}{Claim}
+\newtheorem*{fclaim}{False Claim}
+\newtheorem{observation}{Observation}
+\newtheorem{conjecture}[lemma]{Conjecture}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[lemma]{Corollary}
+\newtheorem{proposition}[lemma]{Proposition}
+\newtheorem*{rt}{Running Time}
+
+\renewcommand{\dh}{\hat{\delta}}
+
+
+%%% You can ignore the following stuff, it's just for formatting purposes
+\textheight=8.6in
+\setlength{\textwidth}{6.44in}
+\addtolength{\headheight}{\baselineskip} 
+% enumerate uses a), b), c), ...
+\renewcommand{\labelenumi}{\alph{enumi})}
+% Sets the style for fancy pages (namely, all but first page)
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+% Changes style of plain pages (namely, the first page)
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \renewcommand\headrulewidth{0pt}
+  \renewcommand\footrulewidth{0.4pt}
+  \renewcommand{\headrule}{}
+  }
+% Changes the title box on the first page
+\renewcommand\maketitle{
+\begin{center}
+\begin{tabular*}{6.44in}{l @{\extracolsep{\fill}}c r}
+\hline
+\bfseries  &  & \bfseries CS 383 Fall 2013 \\
+\bfseries&  & \bfseries  Homework \# 5 Solutions\\ %%% UPDATE FOR EACH ASSIGNMENT
+\bfseries   &   &  \bfseries Jacob Chae\\ %%% YOUR NAME HERE
+\hline
+\end{tabular*}
+\end{center} }
+
+
+
+\begin{document}
+\maketitle
+\thispagestyle{plain}
+
+
+%%% PLEASE PLACE THE HONOR CODE AND YOUR NAME/SIGNATURE HERE
+\noindent Honor Code: 
+
+\noindent I affirm that I have adhered to the Honor Code on this assignment.\\\\
+\textbf{Collaborators: Cooper Labinger, David Meyers}
+
+\subsection*{Problem 1: Are we truly free?}
+
+\textbf{Construction }\\
+Let us create a PDA, M such that: \\
+$$M=(Q, \Sigma, \Gamma, \delta, s, F, \perp)$$\\
+M will have transitions defined as follows:\\
+$$(q, a, A) \xrightarrow[M]{1} (q', \alpha)$$
+$$(r, a, \perp) \xrightarrow[M]{1} (r', \perp)$$
+Now let us create a second PDA, N that models a regular language:\\
+$$N = (Q', \Sigma, \{\amalg\}, \delta ', s'. F', \amalg)$$
+With transition:\\
+$$(q, a, \amalg) \xrightarrow[N]{1} (\delta '(q, a), \amalg)$$\\
+Finally, let us create a third PDA M' that models $L(M) \cap L(N)$\\
+$$M'=(Q \times Q', \Sigma, \Gamma \times \{\amalg\}, \Delta, (s, s'), F \times F', (\perp, \amalg))$$\\
+With transition:
+$$((q, r), a, (A, \amalg)) \xrightarrow[M']{1} ((q', r'), (\alpha, \amalg))$$\\
+As can be seen, all of our transitions are defined for some states q or r, some $a \in \Sigma$ and some $\alpha \in \Gamma$ that gets pushed onto the stack. \\
+Let all of out PDA's define acceptance in terms of reaching some final state.
+
+\begin{lemma}
+$(q, xy, \alpha) \xrightarrow[M]{*} (q', y, \alpha ')$ and $(r, xy, \amalg) \xrightarrow[N]{*} (r', y, \amalg) \iff ((q, r), xy, \alpha \times \{\amalg\}) \xrightarrow[M']{*} ((q', r'), y, \alpha '\times \{\amalg\})$
+
+\begin{proof}
+$(\Rightarrow)$ Induction on the length of the derivation.\\
+Base Case n = 0: $(q, xy, \alpha) \xrightarrow[M]{0} (q, xy, \alpha)$ and $(r, xy, \amalg) \xrightarrow[N]{0} (r, xy, \amalg) \Rightarrow ((q, r), xy, \alpha \times \{\amalg\}) \xrightarrow[M']{0} ((q, r), xy, \alpha \times \{\amalg\})$\\
+
+\noindent Inductive Hypothesis: Assume this is true for n+1 derivations and let $a \in \Sigma$
+
+\noindent Inductive Step:\\
+$$(q, axy, \alpha) \xrightarrow[M]{1} (q, xy, \alpha) \xrightarrow[M]{n} (q, y, \alpha ')$$
+$$(r, axy, \amalg) \xrightarrow[N]{1} (r, xy, \amalg) \xrightarrow[N]{n} (r, y, \amalg)$$
+$$((q, r), axy, \alpha \times \{\amalg\}) \xrightarrow[M']{1} ((q, r), xy, \alpha \times \{\amalg\}) \xrightarrow[M']{n} ((q, r), y, \alpha \times \{\amalg\})$$\\
+
+$(\Leftarrow)$ This direction is trivial as it is symmetrical to the opposite direction.
+\end{proof}
+\end{lemma}
+
+\begin{theorem}
+
+$$(q, a A) \xrightarrow[M]{1} (q', \alpha)$$ 
+\center and 
+
+$$(r, a, \amalg) \xrightarrow[N]{1} (\delta ' (r', a), \amalg)$$ 
+
+\center are accept states \\
+\center$\iff$
+$$((q, r), a, \alpha \times \{\amalg\}) \xrightarrow[M']{1} ((q', r'), (\alpha, \amalg))$$ is also an accept state.
+
+\begin{proof}
+If M and N are in an equivalent state, then by our construction, M' is also in an equivalent state as proven by our lemma. Therefore, if M and N are in accept states, then M' must also be in an accept state.
+\end{proof}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+\end{document}
+

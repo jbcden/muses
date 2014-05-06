@@ -1,0 +1,52 @@
+<div class="container">
+  <%= p params %>
+  ------------------<br>
+  PAGE 5<br>
+  ------------------
+
+
+  <h2>IV. ALMOST THERE</h2>
+  <%= render 'shared/errors' %>
+  <%= form_for @application, url: wizard_path, html: {:class => 'form-horizontal', role: 'form' }, :method => :put do |f| %>
+    <p>
+    Has the STUDENT ever been found responsible for a disciplinary violation at any school or educational institution he/she has attended, whether related to academic misconduct or behavioral misconduct that resulted in a disciplinary action? These actions could include, but are not limited to: probation, suspension, removal, dismissal, or expulsion from the school.
+    </p>
+    <p>
+    <label><%= f.radio_button :disciplinary, 'yes' %> Yes</label><br>
+    <label><%= f.radio_button :disciplinary, 'no' %> No</label>
+    </p>
+
+    <p>
+    Has either PARENT/LEGAL GUARDIAN ever been adjudicated guilty or convicted of a misdemeanor, felony, or other crime?
+    </p>
+    <p>
+    <label><%= f.radio_button :g_convicted, 'yes' %> Yes</label><br>
+    <label><%= f.radio_button :g_convicted, 'no' %> No</label>
+    </p>
+
+    <p>
+    <b>If yes</b>, please briefly describe:
+    </p>
+    <p><%= f.text_area :gc_description %></textarea></p>															
+
+
+    <p><b>Please read the agreement below and sign and date on the spaces provided.</b></p>
+    <p>
+    I agree that everything I wrote here is honest and true. I agree that everything I wrote is my work and that the information I put down will not be returned to me.  I know that if any of the information I put down turns out false, I may lose parts or all of the earned support and program benefits, may be expelled from ProjectMuses, and may not be welcomed back again. I understand that applying guarantees neither acceptance into the program nor earned support for any projects in music education I have proposed above.
+    </p>
+    <p>
+    I understand that I have reviewed the instructions and that acceptance to ProjectMuses is conditional.
+    </p>
+
+    <label>Your name:  <%= f.text_field :conf_name %><br>
+      <label>Relation to STUDENT (if STUDENT, please write SELF): <%= f.text_field :conf_relation %><br>
+        <label>Type your full name to serve as your signature:  <%= f.text_field :conf_full %><br>
+          <label>Today’s Date:  <%= f.date_select :conf_date, start_year: Date.today.year, end_year: Date.today.year %><br>
+
+            <p><b>***</b></p>
+            <p><b>ProjectMuses.com does not discriminate based on the basis of race, color, ethnicity, national origin, religion, creed, sex, age, marital status, physical disability, learning disability, political affiliation, veteran status, or sexual orientation.</b></p>
+            <p><b>***</b></p>
+            <p><b>All parts of this application will be kept confidential unless approved by its author for other purposes.</b></p>
+            <%= f.submit "Continue", :class => 'btn btn-default btn-success' %>
+          <% end %>
+        </div>

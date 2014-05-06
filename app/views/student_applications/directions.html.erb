@@ -1,0 +1,43 @@
+<div class="container">
+
+  ------------------<br>
+  PAGE 1<br>
+  ------------------
+
+  <p>Thank you for your interest in joining PROJECT MUSES!</p>
+
+  <p>We want to help students and families who have a demonstrated need for financial support gain greater access to music education.</p>
+
+  <p>We look forward to learning more about you!</p>
+
+  <h3>Directions</h3>
+
+  <ol>
+    <li>Please complete everything below fully and honestly.</li>
+    <li>Please be ready to submit <b>one</b> of the following documents:</li>
+    <ul>
+      <li>Proof of free or reduced lunch</li>
+      <li>W-2 Forms from last year</li>
+      <li>1040 Forms from last year</li>
+    </ul>
+    <li>Please be ready to submit <b>one or both</b> of the following:</li>
+    <ul>
+      <li>A picture of you</li>
+      <li>A picture of your student if you are not the student</li>
+    </ul>
+    <li>You may <b>mail</b> these forms to: 111 E. Lorain Street Apt. 15B, Oberlin, OH 44074</li>
+    <li>You may also <b>email</b> us at messengersandmuses@gmail.com.</li>
+  </ol>
+
+  <p>Before proceeding, please tell us whether you are applying as the STUDENT and ultimate beneficiary, or as the PARENT/LEGAL GUARDIAN of the STUDENT:</p>
+  <p>I am:</p>
+  <%= form_for @application, url: wizard_path html: {:class => 'form-horizontal', role: 'form' }, :method => :put do |f| %>
+    <p>
+    <div class='form-group'>
+      <label><%= f.radio_button :who, 'student' %> The STUDENT</label><br>
+      <label><%= f.radio_button :who, 'parent' %> The PARENT/LEGAL GUARDIAN</label>
+    </div>
+    </p>
+    <%= f.submit "Continue", :class => 'btn btn-default btn-success' %>
+  <% end %>
+</div>
