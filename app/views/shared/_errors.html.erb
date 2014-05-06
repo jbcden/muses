@@ -1,0 +1,10 @@
+<% if @application.errors.any? %>
+  <div class="error_messages">
+    <h2><%= pluralize(@application.errors.count, "error") %> prohibited this application from being saved:</h2>
+    <ul>
+      <% @application.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

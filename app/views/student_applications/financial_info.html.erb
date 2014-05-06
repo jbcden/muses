@@ -1,0 +1,43 @@
+<div class="container">
+  <%= p params %>
+  ------------------<br>
+  PAGE 3<br>
+  ------------------
+
+  <h2>II. FINANCIAL INFORMATION</h2>
+
+  <%= render 'shared/errors' %>
+
+  <%= form_for @application, url: wizard_path, html: {:class => 'form-horizontal', role: 'form' }, :method => :put do |f| %>
+    <p>Please tell us about the circumstances that make you want to seek financial assistance.</p>
+    <p>
+    <%= f.text_area :circumstances %>
+    </p>
+
+    <p>
+    <label>TOTAL HOUSEHOLD INCOME (taxed + untaxed incomes from previous year):<br>
+      <%= f.text_field :household_income %></label><br>
+    <label>AMOUNT IN DEBT:<br>
+      <%= f.text_field :amount_debt %></label><br>
+    <label>AMOUNT IN SAVINGS:<br>
+      <%= f.text_field :amount_savings %></label><br>
+    <label>AMOUNT IN ASSETS:<br>
+      <%= f.text_field :amount_assets %></label><br>
+    </p>
+
+    <p>Please submit <b>one</b> of the following documents at this time*:</p>
+    <ol>
+      <li>Proof of free or reduced lunch</li>
+      <li>W-2 Forms from last year</li>
+      <li>1040 Forms from last year</li>
+    </ol>
+
+    <p>Upload the file here:</p>
+    <p><%= f.file_field :financial_doc %></p>
+
+    <p>
+    *You may also <b>email</b> us the forms to <a href="mailto:messengersandmuses@gmail.com">messengersandmuses@gmail.com</a>. You may also <b>mail</b> these forms to the address mentioned above.
+    </p>
+    <%= f.submit "Continue", :class => 'btn btn-default btn-success' %>
+  <% end %>
+</div>
