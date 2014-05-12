@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: 218178ea54521728bebc36013c90de908779cbe3
+  specs:
+    stripe (1.10.1)
+      json (~> 1.8.1)
+      mime-types (~> 1.25)
+      rest-client (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -143,6 +152,8 @@ GEM
     redis (3.0.6)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rr (1.1.2)
     rspec-core (2.14.7)
     rspec-expectations (2.14.4)
@@ -218,4 +229,5 @@ DEPENDENCIES
   shoulda
   sidekiq
   sqlite3
+  stripe!
   uglifier (>= 1.0.3)
