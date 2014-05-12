@@ -29,14 +29,6 @@ class DonationsController < ApplicationController
     end
   end
 
-  def is_donor
-    begin
-      unauthorized unless donor_signed_in?
-    rescue ActionController::RoutingError
-      render(file: File.join(Rails.root, 'public/403.html'), status: 403, layout: false)
-    end
-  end
-
   private
 
   def unauthorized
