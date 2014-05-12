@@ -49,7 +49,6 @@
           <% else %>
             <li <% if request.path==sign_out_path %>class="active"<% end %>><%= link_to 'Logout', sign_out_path %></li>
           <% end %>
-          <li <% if request.path==demo_path %>class="active"<% end %>><%= link_to 'Sample Muse Sign-Up', demo_path %></li>
           <!-- Change this conditional to take advantage of polymorphism or exhibits? -->
         </ul>
       </div>
