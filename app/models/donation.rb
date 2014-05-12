@@ -1,5 +1,9 @@
 class Donation < ActiveRecord::Base
+<<<<<<< HEAD
   attr_accessible :customer_id, :campaign_id, :donor_id, :is_paid
+=======
+  attr_accessible :customer_id, :campaign_id, :donor_id
+>>>>>>> payment cards and charges
 
   validates :customer_id, presence: true
   validates :campaign_id, presence: true

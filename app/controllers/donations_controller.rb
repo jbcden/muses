@@ -25,6 +25,7 @@ class DonationsController < ApplicationController
       unauthorized unless donor_signed_in?
     rescue ActionController::RoutingError
       render(file: File.join(Rails.root, 'public/403.html'), status: 403, layout: false)
+      # save_stripe_customer_id(@campaign_id, current_donor.id, customer_id)
     end
   end
 
