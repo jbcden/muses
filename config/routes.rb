@@ -33,7 +33,7 @@ Muses::Application.routes.draw do
 
   match '/donate' => 'donations#donate'
   match '/payment' => 'donations#payment'
-  # match '/demo-form' => 'application#demo', as: :demo
+  match '/demo-form' => 'application#demo', as: :demo
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
