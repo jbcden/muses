@@ -9,6 +9,7 @@ gem 'wicked'
 gem 'devise'
 gem 'paperclip', '~> 3.0'
 gem 'sidekiq'
+gem 'aws-sdk'
 # gem 'sinatra', '>= 1.3.0', :require => nil
 
 group :production do
@@ -17,6 +18,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem 'dotenv'
 end
 
 

@@ -9,13 +9,65 @@ class DonationsController < ApplicationController
     Stripe.api_key = 'sk_test_Zt4bmu85NOFARlheHQNgxD2f'
     campaign_id = params[:campaign_id]
     token = params[:stripe_card_token]
-    amount = (params[:amount].to_i * 100) # do math here
+    amount = (params[:amount].to_i * 100) # do math here -- API requires an int here
+
+    customer = nil
+    save_customer = true
     if token
-      customer = Stripe::Customer.create(
-        :card => token,
-        :account_balance => amount
-      )
-      save_stripe_customer_id(campaign_id, current_donor.id, customer.id, amount)
+      begin
+        customer = Stripe::Customer.create(
+          :card => token,
+          :account_balance => amount
+        )
+      rescue Stripe::CardError => e
+        # Since it's a decline, Stripe::CardError will be caught
+        body = e.json_body
+        err  = body[:error]
+        save_customer = false
+
+        flash[:alert] = "#{err[:message]}"
+        redirect_to donate_path(:campaign_id => campaign_id)
+      rescue Stripe::InvalidRequestError => e
+        # Invalid parameters were supplied to Stripe's API
+        body = e.json_body
+        err  = body[:error]
+        save_customer = false
+
+        flash[:alert] = "#{err[:message]}"
+        redirect_to donate_path(:campaign_id => campaign_id)
+      rescue Stripe::AuthenticationError => e
+        # Authentication with Stripe's API failed
+        # (maybe you changed API keys recently)
+        body = e.json_body
+        err  = body[:error]
+        save_customer = false
+
+        flash[:alert] = "#{err[:message]}"
+        redirect_to donate_path(:campaign_id => campaign_id)
+      rescue Stripe::APIConnectionError => e
+        # Network communication with Stripe failed
+        body = e.json_body
+        err  = body[:error]
+        save_customer = false
+
+        flash[:alert] = "#{err[:message]}"
+        redirect_to donate_path(:campaign_id => campaign_id)
+      rescue Stripe::StripeError => e
+        # Display a very generic error to the user, and maybe send
+        # yourself an email
+        body = e.json_body
+        err  = body[:error]
+        save_customer = false
+
+        flash[:alert] = "#{err[:message]}"
+        redirect_to donate_path(:campaign_id => campaign_id)
+      rescue => e
+        # Something else happened, completely unrelated to Stripe
+
+        save_customer = false
+        redirect_to donate_path(:campaign_id => campaign_id)
+      end
+      save_stripe_customer_id(campaign_id, current_donor.id, customer.id, amount) if save_customer
       # save_stripe_customer_id(campaign_id, 2, customer.id)
     end
   end
@@ -45,7 +97,7 @@ class DonationsController < ApplicationController
       # render 'donate'
     else
       flash[:notice] = "All fields are required"
-      render 'donate'
+      redirect_to donate_path(:campaign_id => @campaign_id)
     end
   end
 end
