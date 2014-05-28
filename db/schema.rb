@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140528165713) do
+ActiveRecord::Schema.define(:version => 20140528213042) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "profile_picture_file_name"
@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(:version => 20140528165713) do
     t.string   "instrument"
     t.string   "target_amount"
     t.string   "age"
-    t.string   "bio"
+    t.text     "bio",                          :limit => 255
     t.integer  "student_id"
     t.string   "description"
     t.string   "title"
-    t.integer  "progress",                     :default => 0
+    t.integer  "progress",                                    :default => 0
     t.date     "target_date"
   end
 
