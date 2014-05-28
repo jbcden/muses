@@ -8,7 +8,7 @@
 
   <p class="alert alert-info">We are currently in beta-testing. If you would like to start a project with us please <a href='<%= contact_url %>'>contact us</a>.</p>
 
-  <% if current_student.email == "jbcden@gmail.com" %>
+  <% if current_student.email == "jbcden@gmail.com" || current_student.email == "jchae@oberlin.edu" %>
     <div class='linking'><a href='<%= new_campaign_path %>'>Create a new campaign here</a></div>
   <% end %>
 
