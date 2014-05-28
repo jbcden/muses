@@ -1,12 +1,12 @@
 class DonationsController < ApplicationController
+  before_filter :is_donor, :only => [:create, :donate, :payment]
 
-  before_filter :is_donor, :only => [:donate, :payment]
   def donate
     @campaign_id = params[:campaign_id] 
   end
 
   def payment
-    Stripe.api_key = ENV['STRIPE_SECRET_KEY_PRODUCTION']
+    Stripe.api_key = ENV['STRIPE_SECRET_KEY_TEST']
     campaign_id = params[:campaign_id]
     token = params[:stripe_card_token]
     amount = (params[:amount].to_i * 100) # do math here -- API requires an int here
@@ -96,7 +96,7 @@ class DonationsController < ApplicationController
       redirect_to campaign_path(campaign)
       # render 'donate'
     else
-      flash[:notice] = "All fields are required"
+      flash[:alert] = "All fields are required"
       redirect_to donate_path(:campaign_id => @campaign_id)
     end
   end

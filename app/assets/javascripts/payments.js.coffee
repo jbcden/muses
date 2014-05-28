@@ -6,8 +6,12 @@ donation =
   setupForm: ->
     $('#payment-form').submit ->
       $('input[type=submit]').attr('disabled', true)
-      donation.processCard()
-      return false
+      if confirm("Your grand total is: " + (parseFloat(window.amount.value) + ((parseFloat(window.amount.value)*0.029)+ 0.30)).toFixed(2) + ".")
+        donation.processCard()
+        return false
+      else 
+        $('input[type=submit]').attr('disabled', false)
+        return false
 
   processCard: ->
     card =

@@ -45,9 +45,9 @@
 Excited to see how far your support can go? So are we.
 </p>
 
-<p>Questions, comments, concerns, queries? <%= link_to 'Contact Us!', contact_path %></p>
+<p>Questions, comments, concerns, queries? <%= link_to 'Contact Us!', contact_url %></p>
 
-      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal', :role => 'form'}) do |f| %>
+      <%= form_for(resource, :as => resource_name, :url => registration_url(resource_name), :html => {:class => 'form-horizontal', :role => 'form'}) do |f| %>
         <%= devise_error_messages! %>
 
         <div class='form-group'>

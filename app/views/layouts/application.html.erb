@@ -7,7 +7,7 @@
     <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-    <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLISHABLE_KEY_PRODUCTION'] %>
+    <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLISHABLE_KEY_TEST'] %>
     <%= yield :head %>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   </head>
@@ -22,32 +22,32 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand logo" href='<%= root_path %>'><img src="/branding/logo_navbar.png" alt="Project Muses"></a>
+        <a class="navbar-brand logo" href='<%= root_url %>'><img src="/branding/logo_navbar.png" alt="Project Muses"></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <!-- <li><%= link_to 'Landing', root_path %></li> -->
-          <li <% if request.path==campaigns_path %>class="active"<% end %>><%= link_to 'Muses',campaigns_path %></li>
-          <li <% if request.path==muses_sign_up_path %>class="active"<% end %>><% if student_signed_in? %>
-            <%= link_to 'Profile', student_path(current_student) %>
+          <!-- <li><%= link_to 'Landing', root_url %></li> -->
+          <li <% if request.path==campaigns_url %>class="active"<% end %>><%= link_to 'Muses',campaigns_url %></li>
+          <li <% if request.path==muses_sign_up_url %>class="active"<% end %>><% if student_signed_in? %>
+            <%= link_to 'Profile', student_url(current_student) %>
           <% else %>
-            <%= link_to 'Become a Muse', muses_sign_up_path %></li>
+            <%= link_to 'Become a Muse', muses_sign_up_url %></li>
           <% end %>
-          <li <% if request.path==donors_path %>class="active"<% end %>><%= link_to 'Donors', donors_path %></li>
-          <li <% if request.path==messengers_sign_up_path %>class="active"<% end %>><% if donor_signed_in? %>
-            <%= link_to 'Profile', donor_path(current_donor) %> 
+          <li <% if request.path==donors_url %>class="active"<% end %>><%= link_to 'Donors', donors_url %></li>
+          <li <% if request.path==messengers_sign_up_url %>class="active"<% end %>><% if donor_signed_in? %>
+            <%= link_to 'Profile', donor_url(current_donor) %> 
           <% else %>
-            <%= link_to 'Become a Donor', messengers_sign_up_path %>
+            <%= link_to 'Become a Donor', messengers_sign_up_url %>
           <% end %></li>
-          <!-- <li <% if request.path==donors_path %>class="active"<% end %>><%= link_to 'Donors', donors_path %></li> -->
+          <!-- <li <% if request.path==donors_url %>class="active"<% end %>><%= link_to 'Donors', donors_url %></li> -->
 
-          <li <% if request.path==contact_path %>class="active"<% end %>><%= link_to 'Contact Us', contact_path %></li>
+          <li <% if request.path==contact_url %>class="active"<% end %>><%= link_to 'Contact Us', contact_url %></li>
           <% unless student_signed_in? or donor_signed_in? %>
-            <li <% if request.path==sign_in_path %>class="active"<% end %>><%= link_to 'Login', sign_in_path %></li>
+            <li <% if request.path==sign_in_url %>class="active"<% end %>><%= link_to 'Login', sign_in_url %></li>
           <% else %>
-            <li <% if request.path==sign_out_path %>class="active"<% end %>><%= link_to 'Logout', sign_out_path %></li>
+            <li <% if request.path==sign_out_url %>class="active"<% end %>><%= link_to 'Logout', sign_out_url %></li>
           <% end %>
           <!-- Change this conditional to take advantage of polymorphism or exhibits? -->
         </ul>
