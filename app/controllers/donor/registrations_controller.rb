@@ -1,4 +1,5 @@
 class Donor::RegistrationsController < Devise::RegistrationsController
+
   def new
     super
   end

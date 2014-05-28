@@ -36,7 +36,7 @@ class DonationsController < ApplicationController
         flash[:alert] = "#{err[:message]}"
         redirect_to donate_path(:campaign_id => campaign_id)
       rescue Stripe::AuthenticationError => e
-        # Authentication with Stripe's API failed
+        # Authentication with Stripe's API failed  --- display 500 error page
         # (maybe you changed API keys recently)
         body = e.json_body
         err  = body[:error]
@@ -45,7 +45,7 @@ class DonationsController < ApplicationController
         flash[:alert] = "#{err[:message]}"
         redirect_to donate_path(:campaign_id => campaign_id)
       rescue Stripe::APIConnectionError => e
-        # Network communication with Stripe failed
+        # Network communication with Stripe failed --- display 500 error page
         body = e.json_body
         err  = body[:error]
         save_customer = false
@@ -53,7 +53,7 @@ class DonationsController < ApplicationController
         flash[:alert] = "#{err[:message]}"
         redirect_to donate_path(:campaign_id => campaign_id)
       rescue Stripe::StripeError => e
-        # Display a very generic error to the user, and maybe send
+        # Display a very generic error to the user, and maybe send --- display 500 error and send email?
         # yourself an email
         body = e.json_body
         err  = body[:error]
@@ -62,7 +62,7 @@ class DonationsController < ApplicationController
         flash[:alert] = "#{err[:message]}"
         redirect_to donate_path(:campaign_id => campaign_id)
       rescue => e
-        # Something else happened, completely unrelated to Stripe
+        # Something else happened, completely unrelated to Stripe --- display 500 error and send email
 
         save_customer = false
         redirect_to donate_path(:campaign_id => campaign_id)

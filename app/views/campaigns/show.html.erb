@@ -42,7 +42,7 @@
             <%= button_to 'Support this muse', donate_path(:campaign_id => @campaign.id) %>
           <% else %>
             <%= button_to 'Support this muse', sign_in_path %>
-            <small>You must sign up as a donor in order to make a donation.</small>
+            <b><small>You must sign up as a donor in order to make a donation.</small></b>
           <% end %>
         <% end %>
         </div>

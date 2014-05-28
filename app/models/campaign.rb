@@ -1,6 +1,9 @@
 class Campaign < ActiveRecord::Base
   attr_accessible :profile_picture, :firstname, :lastname, :preferred_name, :state, :city, :instrument, :target_amount, :age, :bio, :student_id, :title, :description, :progress
-  has_attached_file :profile_picture, :styles => { :medium => "150x150>", :thumb => "60x60>" }
+  has_attached_file :profile_picture,
+   :storage => :s3,
+   :styles => { :medium => "150x150>", :thumb => "60x60>" },
+   :s3_credentials => Proc.new {S3.s3_credentials_test}
   validates :profile_picture, :attachment_presence => true
   validates :firstname, presence: true
   validates :lastname, presence: true
@@ -17,7 +20,7 @@ class Campaign < ActiveRecord::Base
   validates :description, :presence => true
 
   belongs_to :student, :foreign_key => :student_id
-  has_many :donations
+  has_many :donations, :dependent => :destroy
 
   def add_to_progress(amount)
     if self.progress == nil
