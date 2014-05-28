@@ -8,6 +8,8 @@ class Donation < ActiveRecord::Base
   belongs_to :campaign
   belongs_to :donor
 
+  before_destroy :delete_stripe_customer
+
   # need to add some sort of DateTime param here.. also move
   # this to the campaign class? -- they are making the money
   # create a service object between the campaign and donations
@@ -29,5 +31,10 @@ class Donation < ActiveRecord::Base
       )
       d.update_attributes(:is_paid => true) if charge
     } 
+  end
+
+  def delete_stripe_customer
+    c = Stripe::Customer.retrieve(self.customer_id)
+    c.delete
   end
 end

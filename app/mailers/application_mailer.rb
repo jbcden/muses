@@ -1,8 +1,8 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "no-reply@mmuses.org"
+  default from: "no-reply@projectmuses.com"
 
   def comment_submission(comment)
     @comment = comment
-    mail(:to => comment.email, :bcc => 'no-reply@mmuses.org', :subject => 'Your comment has been received')
+    mail(:to => comment.email, :bcc => 'no-reply@projectmuses.com', :subject => 'Your comment has been received')
   end
 end
