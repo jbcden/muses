@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140327181124) do
+ActiveRecord::Schema.define(:version => 20140528165713) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "profile_picture_file_name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20140327181124) do
     t.string   "description"
     t.string   "title"
     t.integer  "progress",                     :default => 0
+    t.date     "target_date"
   end
 
   create_table "donations", :force => true do |t|

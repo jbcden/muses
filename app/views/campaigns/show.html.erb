@@ -16,6 +16,7 @@
       <div class="col-md-7">
         <h1><%= "#{@campaign.firstname} #{@campaign.lastname}"%></h1>
         <h3><%= @campaign.title %></h3>
+        <h3>This project will be ending on <%= @campaign.target_date.strftime("%B #{@campaign.target_date.day.ordinalize} %Y") %>.</h3>
         <% if !@campaign.preferred_name.blank? %>
           <h5>Prefers to be called <%= @campaign.preferred_name%></h5> 
         <% end %>

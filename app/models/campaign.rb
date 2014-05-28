@@ -1,5 +1,5 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :profile_picture, :firstname, :lastname, :preferred_name, :state, :city, :instrument, :target_amount, :age, :bio, :student_id, :title, :description, :progress
+  attr_accessible :profile_picture, :firstname, :lastname, :preferred_name, :state, :city, :instrument, :target_amount, :age, :bio, :student_id, :title, :description, :progress, :target_date
   has_attached_file :profile_picture,
    :storage => :s3,
    :styles => { :medium => "150x150>", :thumb => "60x60>" },
@@ -18,6 +18,7 @@ class Campaign < ActiveRecord::Base
   validates_uniqueness_of :firstname, :scope => :lastname
   validates :title, :presence => true
   validates :description, :presence => true
+  validates :target_date, :presence => true
 
   belongs_to :student, :foreign_key => :student_id
   has_many :donations, :dependent => :destroy
