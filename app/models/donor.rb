@@ -9,7 +9,7 @@ class Donor < ActiveRecord::Base
   has_attached_file :profile_picture, 
     :storage => :s3,
     :styles => {:medium => "150x150>", :thumb => "60x60>" },
-    :s3_credentials => Proc.new {S3.s3_credentials_test}
+    :s3_credentials => Proc.new {S3.s3_credentials_production}
   validates :profile_picture, :attachment_presence => true
 
   has_many :donations, :dependent => :destroy
