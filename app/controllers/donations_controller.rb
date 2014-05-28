@@ -6,7 +6,7 @@ class DonationsController < ApplicationController
   end
 
   def payment
-    Stripe.api_key = ENV['STRIPE_SECRET_KEY_TEST']
+    Stripe.api_key = ENV['STRIPE_SECRET_KEY_PRODUCTION']
     campaign_id = params[:campaign_id]
     token = params[:stripe_card_token]
     amount = (params[:amount].to_i * 100) # do math here -- API requires an int here
