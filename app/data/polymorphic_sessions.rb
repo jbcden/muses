@@ -22,6 +22,7 @@ class PolymorphicSessions
   end
 
   def info
-    @info.to_h
+    Hash[@info.each_pair.to_a]
+    # @info.to_h
   end
 end
