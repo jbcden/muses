@@ -1,34 +1,53 @@
 <%# <%= p params %>
 <%# <%= content_for :head do %>
-<%#   <script(src="https://js.stripe.com/v2/")>
-<%#   <% javascript_tag "Stripe.setPublishableKey('pk_test_HXqDqlZhzd9vJZnW05ciO7ZS')" %>
-<%#   <%= javascript_include_tag "payments" %>
-<%# <% end %>
+  <%#   <script(src="https://js.stripe.com/v2/")> %>
+    <%#   <% javascript_tag "Stripe.setPublishableKey('pk_test_HXqDqlZhzd9vJZnW05ciO7ZS')" %>
+    <%#   <%= javascript_include_tag "payments" %>
+    <%# <% end %>
 
-<p>Please enter your credit card information.</p>
-<%= form_tag payment_path(:campaign_id => @campaign_id), id: 'payment-form' do %>
-  <%= label_tag :amount, "Amount to donate" %>
-  <%= text_field_tag "amount" %>
-  <fieldset class="credit-card">
-    <div class="payment-errors">
-      <noscript>Javascript is not enabled and is required for this form. First enable it in your browser settings.</noscript> 
+<div class="container">
+  <p>Please enter your credit card information.</p>
+  <%= form_tag payment_path(:campaign_id => @campaign_id), id: 'payment-form' do %>
+    <%= label_tag :amount, "Amount to donate", :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= text_field_tag "amount", nil, name: nil,  :class => "form-control", :required => '' %>
     </div>
+    <fieldset class="credit-card">
+      <div class="payment-errors">
+        <noscript>Javascript is not enabled and is required for this form. First enable it in your browser settings.</noscript> 
+      </div>
 
-    <%= label_tag :card_number, "Credit Card Number" %>
-    <%= text_field_tag "card-number", nil, name: nil, :class => "card-number" %>
+      <div class="form-group">
+        <%= label_tag "card-number", "Credit Card Number", :class => "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= text_field_tag "card-number", nil, name: nil, :class => "card-number form-control", :required => '' %>
+        </div>
+      </div>
 
-    <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-    <%= text_field_tag "card-cvc", nil, name: nil, :class => "card-cvc" %>
+      <div class="form-group">
+        <%= label_tag "card-cvc", "Security Code on Card (CVV)", :class => "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= text_field_tag "card-cvc", nil, name: nil, :class => "card-cvc form-control", :required => '' %>
+        </div>
+      </div>
 
-    <%= label_tag :card_month, "Card Expiration" %>
-    <%= select_month Date.today, {add_month_numbers: true}, {name: nil, class: "card-expiry-month"} %>
+      <div class="form-group">
+        <%= label_tag "card-month", "Card Expiration", :class => "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= select_month Date.today, {add_month_numbers: true}, {name: nil, class: "card-expiry-month form-control"} %>
+          <%= select_year nil, {start_year: Date.today.year-1, end_year: Date.today.year+15}, {name: nil, class: "card-expiry-year form-control"} %>
+        </div>
+      </div>
 
-    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, class: "card-expiry-year"} %>
-    <%= hidden_field_tag :stripe_card_token %>
-    <%= submit_tag "Submit Donation", id: "payment_submit" %>
-  </fieldset>
-<% end %>
-
+      <%= hidden_field_tag :stripe_card_token %>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <%= submit_tag "Submit Donation", id: "payment_submit" %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+</div>
 
 
 

@@ -2,6 +2,10 @@ a{
 	color: black;
 }
 
+div.container a{
+  color: #428bca;
+}
+
 body {
 	padding-top: 70px;
 }
