@@ -11,7 +11,7 @@
   <%= form_tag payment_path(:campaign_id => @campaign_id), id: 'payment-form' do %>
     <%= label_tag :amount, "Amount to donate", :class => "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= text_field_tag "amount", nil, name: nil,  :class => "amount form-control", :required => '' %>
+      <%= text_field_tag :amount, nil, :name => :amount,  :class => "amount form-control", :required => '' %>
     </div>
     <fieldset class="credit-card">
       <div class="payment-errors">

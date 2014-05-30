@@ -9,7 +9,11 @@ class DonationsController < ApplicationController
     Stripe.api_key = ENV['STRIPE_SECRET_KEY_PRODUCTION']
     campaign_id = params[:campaign_id]
     token = params[:stripe_card_token]
-    amount = (params[:amount].to_i * 100) # do math here -- API requires an int here
+    amount = params[:amount].to_f
+    amount += ((amount * 0.029) + 0.30)
+    amount = amount.round
+    amount = amount.to_i * 100
+    # amount = (params[:amount].to_i * 100) # do math here -- API requires an int here
 
     customer = nil
     save_customer = true
