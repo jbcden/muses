@@ -6,9 +6,11 @@ class DonationsController < ApplicationController
   end
 
   def payment
+    # Stripe.api_key = ENV['STRIPE_SECRET_KEY_TEST']
     campaign_id = params[:campaign_id]
     token = params[:stripe_card_token]
-    amount = params[:amount].to_f
+    donation = params[:amount].to_i
+    amount = params[:amount].dup.to_f
     amount += ((amount * 0.029) + 0.30)
     amount = amount.round
     amount = amount.to_i * 100
@@ -70,7 +72,7 @@ class DonationsController < ApplicationController
         save_customer = false
         redirect_to donate_path(:campaign_id => campaign_id)
       end
-      save_stripe_customer_id(campaign_id, current_donor.id, customer.id, amount) if save_customer
+      save_stripe_customer_id(campaign_id, current_donor.id, customer.id, donation) if save_customer
       # save_stripe_customer_id(campaign_id, 2, customer.id)
     end
   end
@@ -93,7 +95,6 @@ class DonationsController < ApplicationController
   def save_stripe_customer_id(campaign, donor, customer_id, amount)
     d = Donation.create(customer_id: customer_id, campaign_id: campaign, donor_id: donor)
     if d.save!
-      amount = amount / 100
       Campaign.find(campaign).add_to_progress(amount)
       flash[:success] = "Thank you for contributing!"
       redirect_to campaign_path(campaign)
