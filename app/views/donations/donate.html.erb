@@ -6,7 +6,7 @@
     <%# <% end %>
 
 <div class="container">
-  <p>Please enter your credit card information.</p>
+  <p>Please enter your credit card information. Also please use whole numbers (no decimals) for the amount. </p>
   <p><b>Note:</b> you will also be charged a 2.9% + 30¢ transaction fee for each donation you make. If you have any questions please <a href="<%= contact_url%>">contact us</a>.</p>
   <%= form_tag payment_path(:campaign_id => @campaign_id), id: 'payment-form' do %>
     <%= label_tag :amount, "Amount to donate", :class => "col-sm-2 control-label" %>
