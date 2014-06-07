@@ -6,13 +6,13 @@
     <% @campaigns.each do |c| %>
       <div class='col-xs-12 col-sm-4 col-md-3'>
         <div class="thumbnail">
-      <a class='img-profile-link' href='<%= campaign_path c%>'><%= image_tag c.profile_picture.url :medium, :class => 'img-responsive img-rounded', :alt => 'Profile Picture' %>
-        <div class="caption">
-        <h4><%= c.firstname << " " << c.lastname %></h4>
-        <p><%= c.description %></p>
+          <a class='img-profile-link' href='<%= campaign_path c%>'><%= image_tag c.profile_picture.url :medium, :class => 'img-responsive img-rounded', :alt => 'Profile Picture' %></a>
+          <div class="caption">
+            <h4><%= c.firstname << " " << c.lastname %></h4>
+            <p><%= c.description %></p>
+          </div>
+        </div>
       </div>
-      </a>
-    </div>
-  <% end %>
+    <% end %>
   </div>
 </div>
