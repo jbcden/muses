@@ -35,15 +35,18 @@
           <% else %>
             <%= link_to 'Become a Muse', muses_sign_up_url %></li>
           <% end %>
-          <li <% if request.path==donors_url %>class="active"<% end %>><%= link_to 'Donors', donors_url %></li>
+          <li <% if request.path==donors_url %>class="active"<% end %>><%= link_to 'Messengers', donors_url %></li>
           <li <% if request.path==messengers_sign_up_url %>class="active"<% end %>><% if donor_signed_in? %>
             <%= link_to 'Profile', donor_url(current_donor) %> 
           <% else %>
-            <%= link_to 'Become a Donor', messengers_sign_up_url %>
+            <%= link_to 'Become a Messenger', messengers_sign_up_url %>
           <% end %></li>
-          <!-- <li <% if request.path==donors_url %>class="active"<% end %>><%= link_to 'Donors', donors_url %></li> -->
+          <!-- <li <% if request.path==donors_url %>class="active"<% end %>><%= link_to 'Messengers', donors_url %></li> -->
 
           <li <% if request.path==contact_url %>class="active"<% end %>><%= link_to 'Contact Us', contact_url %></li>
+
+          <li <% if request.path==faq_url %>class="active"<% end %>> <%= link_to 'FAQ', faq_url %> </li>
+
           <% unless student_signed_in? or donor_signed_in? %>
             <li <% if request.path==sign_in_url %>class="active"<% end %>><%= link_to 'Login', sign_in_url %></li>
           <% else %>

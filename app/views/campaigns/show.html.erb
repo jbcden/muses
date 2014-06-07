@@ -43,7 +43,7 @@
             <%= button_to 'Support this muse', donate_path(:campaign_id => @campaign.id) %>
           <% else %>
             <%= button_to 'Support this muse', sign_in_path %>
-            <b><small>You must sign up as a donor in order to make a donation.</small></b>
+            <b><small>You must sign up as a messenger in order to make a donation.</small></b>
           <% end %>
         <% end %>
         </div>
@@ -58,7 +58,7 @@
 
         <div class="row project-target row-fluid show-grid">
           <div class="col-md-6">
-            <h3><%= h (@campaign.progress / @campaign.target_amount.to_f) * 100 %>% <small>complete</small></h3>
+            <h3><%= h ((@campaign.progress / @campaign.target_amount.to_f) * 100).round(1) %>% <small>complete</small></h3>
           </div>
           <div class="col-md-6">
             <h3>$<%= h @campaign.target_amount %> <small>target</small></h3>

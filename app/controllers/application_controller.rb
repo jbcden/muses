@@ -4,13 +4,19 @@ class ApplicationController < ActionController::Base
 
   def home
   end
+
   def contact_us
   end
+
   def submit_comment
     @comment = Comment.new(params)
     ApplicationMailer.delay.comment_submission(@comment)
     render 'contact_us'
   end
+
+  def faq
+  end
+
   def demo
   end
 end

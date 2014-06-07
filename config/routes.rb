@@ -26,6 +26,8 @@ Muses::Application.routes.draw do
   get '/contact-us' => 'application#contact_us', :as => :contact
   post '/contact-us' => 'application#submit_comment'
 
+  get '/faq' => 'application#faq'
+
   resources :campaigns, :path => '/muses/'
   resources :students
   resources :donors, :path => '/messengers/'
