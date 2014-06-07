@@ -5,16 +5,15 @@
     <%#   <%= javascript_include_tag "payments" %>
     <%# <% end %>
 
-<div class="container">
-  <p>Please enter your credit card information. Also please use whole numbers (no decimals) for the amount. </p>
-  <p><b>Note:</b> you will also be charged a 2.9% + 30¢ transaction fee for each donation you make. If you have any questions please <a href="<%= contact_url%>">contact us</a>.</p>
-  <%= form_tag payment_path(:campaign_id => @campaign_id), id: 'payment-form' do %>
-    <div class="form-group"></div>
-    <%= label_tag :amount, "Amount to donate", :class => "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= text_field_tag :amount, nil, :name => :amount, :title => "Only use whole  numbers, no \"$\" or decimals.", :pattern => "[0-9][^$.a-zA-Z]", :class => "amount form-control", :required => '' %>
-    </div>
-    <fieldset class="credit-card">
+  <div class="container">
+    <p>Please enter your credit card information. Also please use whole numbers (no decimals) for the amount. </p>
+    <p><b>Note:</b> you will also be charged a 2.9% + 30¢ transaction fee for each donation you make. If you have any questions please <a href="<%= contact_url%>">contact us</a>.</p>
+    <%= form_tag payment_path(:campaign_id => @campaign_id), id: 'payment-form' do %>
+      <div class="form-group"></div>
+      <%= label_tag :amount, "Amount to donate", :class => "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= text_field_tag :amount, nil, :name => :amount, :title => "Only use whole  numbers, no \"$\" or decimals.", :pattern => "[0-9][^$.a-zA-Z]", :class => "amount form-control", :required => '' %>
+      </div>
       <div class="payment-errors">
         <noscript>Javascript is not enabled and is required for this form. First enable it in your browser settings.</noscript> 
       </div>
@@ -47,9 +46,8 @@
           <%= submit_tag "Submit Donation", id: "payment_submit" %>
         </div>
       </div>
-    </fieldset>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 
 
 
