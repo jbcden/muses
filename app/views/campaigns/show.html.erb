@@ -30,6 +30,13 @@
             <p><strong>Instrument:</strong> <%= @campaign.instrument%></p>
             <p><strong>Age/Grade:</strong> <%= @campaign.age%></p>
             <p><strong>Description:</strong> <%= @campaign.description %>
+          <% if current_donor.email == 'jbcden@gmail.com' %>
+            <ul>
+              <% @campaign.donors do |d| %>
+                <li><%= "#{d.firstname} #{d.lastname}, #{d.email} %></li>
+              <% end %>
+            </ul>
+          <% end %>
           </div>
         </div>
 

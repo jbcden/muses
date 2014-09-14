@@ -131,6 +131,9 @@ ActiveRecord::Schema.define(:version => 20140528213042) do
   end
 
   create_table "students", :force => true do |t|
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
@@ -141,9 +144,6 @@ ActiveRecord::Schema.define(:version => 20140528213042) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
   end
 
   add_index "students", ["confirmation_token"], :name => "index_students_on_confirmation_token", :unique => true
