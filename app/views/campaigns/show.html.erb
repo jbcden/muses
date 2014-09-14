@@ -33,7 +33,7 @@
           <% if current_donor.email == 'jbcden@gmail.com' %>
             <ul>
               <% @campaign.donors.each do |d| %>
-                <li><%= "#{d.firstname} #{d.lastname}, #{d.email} %></li>
+                <li><%= "#{d.firstname} #{d.lastname}, #{d.email}" %></li>
               <% end %>
             </ul>
           <% end %>
