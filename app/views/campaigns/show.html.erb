@@ -30,7 +30,7 @@
             <p><strong>Instrument:</strong> <%= @campaign.instrument%></p>
             <p><strong>Age/Grade:</strong> <%= @campaign.age%></p>
             <p><strong>Description:</strong> <%= @campaign.description %>
-          <% if current_student.email == 'jbcden@gmail.com' %>
+          <% if student_signed_in? and current_student.email == 'jbcden@gmail.com' %>
             <ul>
               <% @campaign.donations.each do |d| %>
                 <li><%= "#{Donor.find(d.donor_id).firstname} #{Donor.find(d.donor_id).lastname}, #{Donor.find(d.donor_id).email}" %></li>
