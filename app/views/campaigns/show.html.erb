@@ -32,8 +32,8 @@
             <p><strong>Description:</strong> <%= @campaign.description %>
           <% if current_student.email == 'jbcden@gmail.com' %>
             <ul>
-              <% @campaign.donors.each do |d| %>
-                <li><%= "#{d.firstname} #{d.lastname}, #{d.email}" %></li>
+              <% @campaign.donations.each do |d| %>
+                <li><%= "#{Donor.find(d.donor_id).firstname} #{Donor.find(d.donor_id).lastname}, #{Donor.find(d.donor_id).email}" %></li>
               <% end %>
             </ul>
           <% end %>
