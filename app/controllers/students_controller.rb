@@ -1,5 +1,4 @@
 class StudentsController < ApplicationController
-  # before_filter :authorized?, only: [:show]
   def show
     @student = Student.find(params[:id])
     authorized?

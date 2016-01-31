@@ -6,7 +6,6 @@ class DonationsController < ApplicationController
   end
 
   def payment
-    # Stripe.api_key = ENV['STRIPE_SECRET_KEY_TEST']
     campaign_id = params[:campaign_id]
     token = params[:stripe_card_token]
     donation = params[:amount].to_i
@@ -14,7 +13,6 @@ class DonationsController < ApplicationController
     amount += ((amount * 0.029) + 0.30)
     amount = amount.round
     amount = amount.to_i * 100
-    # amount = (params[:amount].to_i * 100) # do math here -- API requires an int here
 
     customer = nil
     save_customer = true
@@ -73,7 +71,6 @@ class DonationsController < ApplicationController
         redirect_to donate_path(:campaign_id => campaign_id)
       end
       save_stripe_customer_id(campaign_id, current_donor.id, customer.id, donation) if save_customer
-      # save_stripe_customer_id(campaign_id, 2, customer.id)
     end
   end
 
@@ -82,7 +79,6 @@ class DonationsController < ApplicationController
       unauthorized unless donor_signed_in?
     rescue ActionController::RoutingError
       render(file: File.join(Rails.root, 'public/403.html'), status: 403, layout: false)
-      # save_stripe_customer_id(@campaign_id, current_donor.id, customer_id)
     end
   end
 
@@ -98,7 +94,6 @@ class DonationsController < ApplicationController
       Campaign.find(campaign).add_to_progress(amount)
       flash[:success] = "Thank you for contributing!"
       redirect_to campaign_path(campaign)
-      # render 'donate'
     else
       flash[:alert] = "All fields are required"
       redirect_to donate_path(:campaign_id => @campaign_id)

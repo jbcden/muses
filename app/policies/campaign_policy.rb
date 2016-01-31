@@ -7,15 +7,13 @@ class CampaignPolicy
     @campaign = campaign
   end
 
-  # may want to uncomment these and add custom authorization for actions at a later date -- for now it suffices to check that the student 'owning' the campaign is doing the action.
+  def edit?
+    authorized?
+  end
 
-  # def edit?
-  #   authorized?
-  # end
-
-  # def update?
-  #   authorized?
-  # end
+  def update?
+    authorized?
+  end
 
   def authorized?
     if user.nil?

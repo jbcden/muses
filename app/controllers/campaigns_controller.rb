@@ -1,6 +1,4 @@
 class CampaignsController < ApplicationController
-  # before_filter :authorized?, only: [:edit, :update, :destroy]
-
   def show
     @campaign = Campaign.find(params[:id])
   end
@@ -27,18 +25,10 @@ class CampaignsController < ApplicationController
   def edit
     @campaign = Campaign.find(params[:id])
     authorized?
-    # raise Exceptions::NotAuthorizedError unless CampaignPolicy.new(current_student, @campaign).authorized?
-    # render(file: File.join(Rails.root, 'public/403.html'), status: 403, layout: false) unless CampaignPolicy.new(current_student, @campaign).authorized?
-    # begin
-    #   CampaignPolicy.new(current_student, @campaign).authorized?
-    # rescue ActionController::RoutingError
-    #   render(file: File.join(Rails.root, 'public/403.html'), status: 403, layout: false)
-    # end
   end
 
   def update
     @campaign = Campaign.find(params[:id])
-    # raise Exceptions::NotAuthorizedError unless CampaignPolicy.new(current_student, @campaign).authorized?
     authorized?
     if @campaign.update_attributes(params[:campaign])
       flash[:notice] = 'Campaign has been updated.'
@@ -50,7 +40,6 @@ class CampaignsController < ApplicationController
   def destroy
     @campaign = Campaign.find(params[:id])
     authorized?
-    # raise Exceptions::NotAuthorizedError unless CampaignPolicy.new(current_student, @campaign).authorized?
     @campaign.destroy
     redirect_to current_student
   end
